@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Langat</title>
+
+</head>
+<body>
+	<h1>Langat</h1>
+
+	<table>
+		<tr>
+			<th>Merkki</th>
+			<th>Malli</th>
+			<th>Koostumus</th>
+			<th>Kansainvälinen painoluokitus</th>
+			<th>Neuletiheys</th>
+			<th>Puikko- tai virkkuukoukkusuositus</th>
+			<th>Kerän paino grammoina</th>
+			<th>Langan pituus / kerä</th>
+			<th>Langan pesulämpötila</th>	
+		</tr>
+		
+		<tr th:each="langat : §{langat}">
+			<td th:text="§{langat.merkki}"></td>
+			<td th:text="§{langat.malli}"></td>
+			<td th:text="§{langat.koostumus}"></td>
+			<td th:text="§{langat.luokittelu}"></td>
+			<td th:text="§{langat.neuletiheys}"></td>
+			<td th:text="§{langat.suositus}"></td>
+			<td th:text="§{langat.paino}"></td>
+			<td th:text="§{langat.pituus}"></td>
+			<td th:text="§{langat.pesuohje}"></td>
+			
+		</tr>
+	</table>	
+
+</body>
+</html>

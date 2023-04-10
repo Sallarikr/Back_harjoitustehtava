@@ -14,11 +14,10 @@ CREATE TABLE lanka (
   suositus varchar(200) NOT NULL,
   paino int(11) NOT NULL DEFAULT 0,
   pituus int(11) NOT NULL DEFAULT 0,
-  pesuohje int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (lanka_id);
 
-INSERT INTO lanka(merkki, malli, koostumus, luokittelu, neuletiheys, suositus, paino, pituus, pesuohje)
-VALUES	('Novita', '7 veljestä', '75 % villaa, 25 % polyamidia', 'Aran (8 wpi)', '18 s / 10 cm', 'Puikot kokoa 3,5', 100, 200, 40);
+INSERT INTO lanka(merkki, malli, koostumus, luokittelu, neuletiheys, suositus, paino, pituus)
+VALUES	('Novita', '7 veljestä', '75 % villaa, 25 % polyamidia', 'Aran (8 wpi)', '18 s / 10 cm', 'Puikot kokoa 3,5', 100, 200);
 		
 CREATE TABLE ohje (
   ohje_id bigint(20) NOT NULL AUTO_INCREMENT,
@@ -34,16 +33,15 @@ VALUES 	('Jonas Matthies', 'Book Rat', 'https://www.supergurumi.com/amigurumi-cr
 		
 CREATE TABLE vari (
   vari_id bigint(20) NOT NULL AUTO_INCREMENT,
-  lanka_id bigint(20) NOT NULL DEFAULT 0,
   vari varchar(200) NOT NULL,
   maara_varastossa int(11) NOT NULL,
+  lanka_id bigint(20) NOT NULL,
   PRIMARY KEY (vari_id) USING BTREE,
   KEY FK_vari_lanka (lanka_id),
-  CONSTRAINT FK_vari_lanka FOREIGN KEY (lanka_id) REFERENCES lanka (`lanka_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+  CONSTRAINT FK_vari_lanka FOREIGN KEY (lanka_id) REFERENCES lanka (lanka_id) ON DELETE NO ACTION ON UPDATE NO ACTION);
 
-INSERT INTO vari(lanka_id, vari, maara_varastossa)
-VALUES	(1, 'Auringonkukka', 50);
+INSERT INTO vari(vari, maara_varastossa)
+VALUES	('Auringonkukka', 50, 1);
 		
 SELECT * FROM lanka;
 SELECT * FROM ohje;

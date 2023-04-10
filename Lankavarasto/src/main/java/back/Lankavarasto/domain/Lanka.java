@@ -2,8 +2,16 @@ package back.Lankavarasto.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 @Entity
@@ -17,14 +25,18 @@ public class Lanka {
 	
 	private String merkki, malli, koostumus, luokittelu, neuletiheys, suositus;
 
-	private int paino, pituus, pesuohje;
+	private int paino, pituus;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "lanka")
+	@JsonIgnore
+	private List<Vari> varit;
 
 	public Lanka() {
 		super();
 	}
 
 	public Lanka(Long id, String merkki, String malli, String koostumus, String luokittelu, String neuletiheys,
-			String suositus, int paino, int pituus, int pesuohje) {
+			String suositus, int paino, int pituus) {
 		super();
 		this.id = id;
 		this.merkki = merkki;
@@ -35,11 +47,10 @@ public class Lanka {
 		this.suositus = suositus;
 		this.paino = paino;
 		this.pituus = pituus;
-		this.pesuohje = pesuohje;
-	}
+	}	
 
 	public Lanka(String merkki, String malli, String koostumus, String luokittelu, String neuletiheys,
-			String suositus, int paino, int pituus, int pesuohje) {
+			String suositus, int paino, int pituus, List<Vari> varit) {
 		super();
 		this.merkki = merkki;
 		this.malli = malli;
@@ -49,7 +60,8 @@ public class Lanka {
 		this.suositus = suositus;
 		this.paino = paino;
 		this.pituus = pituus;
-		this.pesuohje = pesuohje;
+		this.varit = varit;
+
 	}
 
 	public Long getId() {
@@ -124,18 +136,18 @@ public class Lanka {
 		this.pituus = pituus;
 	}
 
-	public int getPesuohje() {
-		return pesuohje;
+	public List<Vari> getVarit() {
+		return varit;
 	}
 
-	public void setPesuohje(int pesuohje) {
-		this.pesuohje = pesuohje;
+	public void setVarit(List<Vari> varit) {
+		this.varit = varit;
 	}
 
 	@Override
 	public String toString() {
 		return "Lanka [id=" + id + ", merkki=" + merkki + ", malli=" + malli + ", koostumus=" + koostumus
 				+ ", luokittelu=" + luokittelu + ", neuletiheys=" + neuletiheys + ", suositus=" + suositus + ", paino="
-				+ paino + ", pituus=" + pituus + ", pesuohje=" + pesuohje + "]";
+				+ paino + ", pituus=" + pituus + "]";
 	}
 }

@@ -14,31 +14,28 @@
 	
 			<a class="btn btn-info" href="/index"{>Etusivulle</a>
 			<a class="btn btn-success" href="/ohjelista"{>Ohjeet</a>
-			<a class="btn btn-warning" href="/varilista"{>Lankojen värit</a>
 			
 	<table class="table table-striped">
 		<tr>
-			<th>Merkki</th>
-			<th>Malli</th>
+			<th>Valmistaja</th>
+			<th>Lanka</th>
 			<th>Koostumus</th>
-			<th>Kansainvälinen painoluokitus</th>
+			<th>Painoluokitus</th>
 			<th>Neuletiheys</th>
 			<th>Puikko- tai virkkuukoukkusuositus</th>
-			<th>Kerän paino grammoina</th>
-			<th>Langan pituus / kerä</th>
-			<th>Langan pesulämpötila</th>	
+			<th>Kerän paino /g</th>
+			<th>Langan pituus/m</th>
 		</tr>
 	
 		<tr th:each="lanka : ${langat}">
 			<td th:text="${lanka.merkki}"></td>
-			<td th:text="${lanka.malli}"></td>
+			<td th:text="${lanka.malli}"></td> 
 			<td th:text="${lanka.koostumus}"></td>
 			<td th:text="${lanka.luokittelu}"></td>
 			<td th:text="${lanka.neuletiheys}"></td>
 			<td th:text="${lanka.suositus}"></td>
 			<td th:text="${lanka.paino}"></td>
 			<td th:text="${lanka.pituus}"></td>
-			<td th:text="${lanka.pesuohje}"></td>
 		</tr>
 	</table>	
 			

@@ -24,12 +24,10 @@ public class YleisController {
 	@Autowired
 	VariRepository variRepository;
 	
-	
 	@GetMapping(value={"/", "index"})
 	public String naytaEtusivu() {
 		return "index";
 	}
-	
 	
 	
 	@GetMapping("/lankalista")
@@ -53,6 +51,7 @@ public class YleisController {
 	@GetMapping("muokkaaLankaa/{id}")
 	public String muokkaaLankaa(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("muokkaaLankaa", lankaRepository.findAll());
+		model.addAttribute("varit", variRepository.findAll());
 		return "muokkaaLankaa";
 	}
 	
@@ -64,6 +63,39 @@ public class YleisController {
 
 	
 
+	@GetMapping("/varilista")
+	public String naytaVarit(Model model) {
+		model.addAttribute("varit", variRepository.findAll());
+		return "varilista";
+	}	
+
+	@GetMapping("/lisaaVari")
+	public String lisaaVari(Model model) {
+		model.addAttribute("lisaaUusiVari", new Vari());
+		model.addAttribute("langat", lankaRepository.findAll());
+		return "lisaaVari";
+	}
+	
+	@PostMapping("tallennaVari")
+	public String tallennaVari(Vari vari) {
+		variRepository.save(vari);
+		return "redirect:/varilista";
+	}
+
+	@GetMapping("muokkaaVaria/{id}")
+	public String muokkaaVaria(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("muokkaaVaria", variRepository.findAll());
+		return "muokkaaVaria";
+	}
+	
+	@GetMapping("poistaVari/{id}")
+	public String poistaVari(@PathVariable("id") Long id) {
+		variRepository.deleteById(id);
+		return "redirect:/varilista";
+	}
+
+	
+	
 	@GetMapping("/ohjelista")
 	public String naytaOhjeet(Model model) {
 		model.addAttribute("ohjeet", ohjeRepository.findAll());
@@ -94,40 +126,4 @@ public class YleisController {
 		return "redirect:/ohjelista";
 	}
 	
-
-	
-	@GetMapping("/varilista")
-	public String naytaVarit(Model model) {
-		model.addAttribute("varit", variRepository.findAll());
-		return "varilista";
-	}	
-
-	@GetMapping("/lisaaVari")
-	public String lisaaVari(Model model) {
-		model.addAttribute("lisaaUusiVari", new Vari());
-		return "lisaaVari";
-	}
-	
-	@PostMapping("tallennaVari")
-	public String tallennaVari(Vari vari) {
-		variRepository.save(vari);
-		return "redirect:/varilista";
-	}
-
-	@GetMapping("muokkaaVaria/{id}")
-	public String muokkaaVaria(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("muokkaaVaria", variRepository.findAll());
-		return "muokkaaVaria";
-	}
-	
-	@GetMapping("poistaVari/{id}")
-	public String poistaVari(@PathVariable("id") Long id) {
-		variRepository.deleteById(id);
-		return "redirect:/varilista";
-	}
-	
-	
-	
-	
-
 }

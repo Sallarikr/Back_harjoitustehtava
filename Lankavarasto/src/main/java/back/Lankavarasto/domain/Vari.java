@@ -1,7 +1,10 @@
 package back.Lankavarasto.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
@@ -14,30 +17,31 @@ public class Vari {
 	
 	@Column(name="vari_id")
 	private Long id;
-	
-	@Column(name="lanka_id")
-	private String malli;
-	
+		
 	private String vari;
 	
 	@Column(name="maara_varastossa")
 	private int maara;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "lanka_id")
+	private Lanka lanka;
+	
+	
 	public Vari() {
 		super();
 	}
 
-	public Vari(Long id, String malli, String vari, int maara) {
+	public Vari(Long id, String vari, int maara, Lanka lanka) {
 		super();
 		this.id = id;
-		this.malli = malli;
 		this.vari = vari;
 		this.maara = maara;
+		this.lanka = lanka;
 	}
 
-	public Vari(String malli, String vari, int maara) {
+	public Vari(String vari, int maara) {
 		super();
-		this.malli = malli;
 		this.vari = vari;
 		this.maara = maara;
 	}
@@ -48,14 +52,6 @@ public class Vari {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getMalli() {
-		return malli;
-	}
-
-	public void setMalli(String malli) {
-		this.malli = malli;
 	}
 
 	public String getVari() {
@@ -74,10 +70,17 @@ public class Vari {
 		this.maara = maara;
 	}
 
+	public Lanka getLanka() {
+		return lanka;
+	}
+
+	public void setLanka(Lanka lanka) {
+		this.lanka = lanka;
+	}
+
 	@Override
 	public String toString() {
-		return "Vari [id=" + id + ", malli=" + malli + ", vari=" + vari + ", maara=" + maara
-				+ "]";
+		return "Vari [id=" + id + ", vari=" + vari + ", maara=" + maara + ", lanka=" + lanka + "]";
 	}
 
 	

@@ -11,11 +11,12 @@
 		<form th:object="${lisaaUusiVari}" th:action="@{/tallennaVari}" action="#" method="post">
 		
 		<div>
-			<label>Lanka:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{malli}"/>
+			
+		<label>Lanka:</label>
+		<select id="langat" th:field="*{lanka}" class="form-control">
+ 		<option th:each="lanka: ${langat}" th:value="${lanka.id}"
+ 		th:text="${lanka.malli}"></option>
+		</select>
 		</div>
 	
 		<div>

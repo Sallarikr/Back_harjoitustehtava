@@ -16,13 +16,15 @@
 	
 	<table class="table table-striped">
 		<tr>
+			<th>Valmistaja</th>
 			<th>Lanka</th>
 			<th>Väri</th>
 			<th>Varastomäärä grammoina</th>	
 		</tr>
 	
 		<tr th:each="vari : ${varit}">
-			<td th:text="${vari.malli}"></td>
+			<td th:text="${vari.lanka.merkki}"></td>
+			<td th:text="${vari.lanka.malli}"></td>
 			<td th:text="${vari.vari}"></td>
 			<td th:text="${vari.maara}"></td>
 		</tr>

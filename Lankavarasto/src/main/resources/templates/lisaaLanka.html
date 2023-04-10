@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Lisää uusi lanka</title>
+</head>
+<body>
+	<h1>Lisää uusi lanka</h1>
+	<div>
+		<form th:object="${lisaaUusiLanka}" th:action="@{/tallennaLanka}" action="#" method="post">
+		
+		<div>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{malli}"/>
+			<label>Langan malli:</label>
+		</div>
+		
+		<div>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{merkki}"/>
+			<label>Langan merkki:</label>
+		</div>
+		
+		<div>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{koostumus}"/>
+			<label>Langan koostumus:</label>
+		</div>
+		
+		<div>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{luokittelu}"/>
+			<label>Langan painoluokitus:</label>
+		</div>
+		
+		<div>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{neuletiheys}"/>
+			<label>Langan neuletiheys:</label>
+		</div>
+		
+		<div>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{suositus}"/>
+			<label>Puikko- tai koukkusuositus:</label>
+		</div>
+		
+		<div>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{paino}"/>
+			<label>Langan paino grammoina:</label>
+		</div>
+		
+		<div>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{pituus}"/>
+			<label>Langan pituus:</label>
+		</div>
+		
+		<div>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{pesuohje}"/>
+			<label>Langan pesulämpötila:</label>
+		</div>
+				
+		<div>
+			<input class="btn btn-sm btn-success" type="submit" value="Lisää lanka"></input>
+			<a class="btn btn-sm btn-danger " href="/lankalista">Palaa tallentamatta</a>
+		</div>
+		</form>
+	</div>
+</body>
+</html>

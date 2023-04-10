@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Lisää uusi ohje</title>
+</head>
+<body>
+	<h1>Lisää uusi ohje</h1>
+	<div>
+		<form th:object="${lisaaUusiOhje}" th:action="@{/tallennaOhje}" action="#" method="post">
+		
+		<div>
+			<label>Ohjeen suunnittelija:</label>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{suunnittelija}"/>
+		</div>
+		
+		<div>
+			<label>Ohjeen nimi:</label>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{nimi}"/>
+		</div>
+		
+		<div>
+			<label>Ohjeen lähde:</label>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{lahde}"/>
+		</div>
+		
+		<div>			
+			<label>Tarvittavan lankan luokittelu:</label>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{luokittelu}"/>
+		</div>
+		
+		<div>
+			<label>Tarvittava langan määrä:</label>
+			<input type="text"
+			autocomplete="off"
+			placeholder=" "
+			th:field="*{maara}"/>
+		</div>
+
+		<div>
+			<input class="btn btn-sm btn-success" type="submit" value="Lisää ohje"></input>
+			<a class="btn btn-sm btn-danger " href="/ohjelista">Palaa tallentamatta</a>
+		</div>
+		</form>
+	</div>
+</body>
+</html>

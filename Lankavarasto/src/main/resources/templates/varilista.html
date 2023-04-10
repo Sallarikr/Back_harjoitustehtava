@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Värit</title>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Värit</title>
 
 </head>
 <body>
 	<h1>Lankojen värit</h1>
-	<table>
+			<a class="btn btn-info" href="/index"{>Etusivulle</a>
+			<a class="btn btn-success" href="/lankalista"{>Langat</a>
+			<a class="btn btn-warning" href="/ohjelista"{>Ohjeet</a>
+			
+	
+	<table class="table table-striped">
 		<tr>
 			<th>Lanka</th>
 			<th>Väri</th>
@@ -20,5 +27,8 @@
 			<td th:text="${vari.maara}"></td>
 		</tr>
 	</table>
+	
+	<a class="btn btn-success" href="/lisaaVari"{>Lisää langalle uusi väri</a>
+		
 </body>
 </html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Värit</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+	<h1>Lankojen värit</h1>
+	<table>
+		<tr>
+			<th>Lanka</th>
+			<th>Väri</th>
+			<th>Varastomäärä grammoina</th>	
+		</tr>
+	
+		<tr th:each="vari : ${varit}">
+			<td th:text="${vari.malli}"></td>
+			<td th:text="${vari.vari}"></td>
+			<td th:text="${vari.maara}"></td>
+		</tr>
+	</table>
+</body>
+</html>

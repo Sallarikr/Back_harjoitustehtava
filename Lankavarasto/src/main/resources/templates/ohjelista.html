@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Ohjeet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+	<h1>Ohjeet</h1>
+	<table>
+		<tr>
+			<th>Suunnittelija</th>
+			<th>Mallin nimi</th>
+			<th>Lähde</th>
+			<th>Tarvittavan langan luokittelu</th>
+			<th>Tarvittavan langan varastomäärä</th>
+		</tr>
+		
+		<tr th:each="ohje : ${ohjeet}">
+			<td th:text="${ohje.suunnittelija}"></td>
+			<td th:text="${ohje.nimi}"></td>
+			<td th:text="${ohje.lahde}"></td>	
+			<td th:text="${ohje.luokittelu}"></td>
+			<td th:text="${ohje.maara}"></td>	
+		</tr>
+	</table>
+</body>
+</html>

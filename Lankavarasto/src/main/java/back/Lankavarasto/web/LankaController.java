@@ -1,5 +1,7 @@
 package back.Lankavarasto.web;
 
+//import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,21 +13,18 @@ import back.Lankavarasto.domain.LankaRepository;
 @Controller
 public class LankaController {
 
-	@GetMapping("/index")
-	public String naytaEtusivu() {
-		return "Lanka- ja käsityöohjevarasto";
-	}
-	
 	@Autowired
 	private LankaRepository lankaRepository;
 	
-	@GetMapping("/langat")
+	@RequestMapping(value={"/", "index"})
+	public String naytaEtusivu() {
+		return "index";
+	}
+	
+	@GetMapping("/lankalista")
 	public String naytaLangat(Model model) {
 		model.addAttribute("langat", lankaRepository.findAll());
 		return "lankalista";
 	}
-	
-	
-	
 	
 }

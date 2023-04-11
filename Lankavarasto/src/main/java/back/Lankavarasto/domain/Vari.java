@@ -18,7 +18,8 @@ public class Vari {
 	@Column(name="vari_id")
 	private Long id;
 		
-	private String vari;
+	@Column(name="vari")
+	private String savy;
 	
 	@Column(name="maara_varastossa")
 	private int maara;
@@ -31,20 +32,22 @@ public class Vari {
 	public Vari() {
 		super();
 	}
+	
+	public Vari(String savy, int maara) {
+		super();
+		this.savy = savy;
+		this.maara = maara;
+	}
 
-	public Vari(Long id, String vari, int maara, Lanka lanka) {
+	public Vari(Long id, String savy, int maara, Lanka lanka) {
 		super();
 		this.id = id;
-		this.vari = vari;
+		this.savy = savy;
 		this.maara = maara;
 		this.lanka = lanka;
 	}
 
-	public Vari(String vari, int maara) {
-		super();
-		this.vari = vari;
-		this.maara = maara;
-	}
+	
 
 	public Long getId() {
 		return id;
@@ -54,12 +57,12 @@ public class Vari {
 		this.id = id;
 	}
 
-	public String getVari() {
-		return vari;
+	public String getSavy() {
+		return savy;
 	}
 
-	public void setVari(String vari) {
-		this.vari = vari;
+	public void setSavy(String savy) {
+		this.savy = savy;
 	}
 
 	public int getMaara() {
@@ -80,7 +83,7 @@ public class Vari {
 
 	@Override
 	public String toString() {
-		return "Vari [id=" + id + ", vari=" + vari + ", maara=" + maara + ", lanka=" + lanka + "]";
+		return "Vari [id=" + id + ", savy=" + savy + ", maara=" + maara + ", lanka=" + lanka + "]";
 	}
 
 	

@@ -9,30 +9,29 @@
 	<h1>Lisää langalle uusi väri</h1>
 	<div>
 		<form th:object="${lisaaUusiVari}" th:action="@{/tallennaVari}" action="#" method="post">
-		
-		<div>
-			
-		<label>Lanka:</label>
-		<select id="langat" th:field="*{lanka}" class="form-control">
- 		<option th:each="lanka: ${langat}" th:value="${lanka.id}"
- 		th:text="${lanka.malli}"></option>
-		</select>
-		</div>
-	
+
 		<div>
 			<label>Langan väri:</label>
 			<input type="text"
 			autocomplete="off"
 			placeholder=" "
-			th:field="*{vari}"/>
+			th:field="*{savy}"/>
 		</div>
 	
 		<div>
-			<label>Värin varastomäärä:</label>
+			<label>Väriä varastossa /g:</label>
 			<input type="text"
 			autocomplete="off"
 			placeholder=" "
 			th:field="*{maara}"/>
+		</div>
+	
+		<div>
+			<label>Väri:</label>
+			<select id="langat" th:field="*{lanka}">
+	 		<option th:each="lanka: ${langat}" th:value="${lanka.id}" th:text="${lanka.malli}">
+	 		</option>
+			</select>
 		</div>
 	
 		<div>

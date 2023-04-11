@@ -9,9 +9,9 @@
 </head>
 <body>
 	<h1>Lankojen värit</h1>
-			<a class="btn btn-info" href="/index"{>Etusivulle</a>
-			<a class="btn btn-success" href="/lankalista"{>Langat</a>
-			<a class="btn btn-warning" href="/ohjelista"{>Ohjeet</a>
+			<a class="btn btn-info" href="/index">Etusivulle</a>
+			<a class="btn btn-success" href="/lankalista">Langat</a>
+			<a class="btn btn-warning" href="/ohjelista">Ohjeet</a>
 			
 	
 	<table class="table table-striped">
@@ -20,17 +20,22 @@
 			<th>Lanka</th>
 			<th>Väri</th>
 			<th>Varastomäärä grammoina</th>	
+			<th></th>
+			<th></th>
 		</tr>
 	
 		<tr th:each="vari : ${varit}">
 			<td th:text="${vari.lanka.merkki}"></td>
 			<td th:text="${vari.lanka.malli}"></td>
-			<td th:text="${vari.vari}"></td>
+			<td th:text="${vari.savy}"></td>
 			<td th:text="${vari.maara}"></td>
+			<td><a class="btn btn-outline-info" th:href="@{/muokkaaVaria/{id}(id=${vari.id})}">Muokkaa</a></td>
+			<td><a class="btn btn-outline-danger" th:href="@{/poistaVari/{id}(id=${vari.id})}">Poista</a></td>
+			
 		</tr>
 	</table>
 	
-	<a class="btn btn-success" href="/lisaaVari"{>Lisää langalle uusi väri</a>
+	<a class="btn btn-info" href="/lisaaVari">Lisää langalle uusi väri</a>
 		
 </body>
 </html>

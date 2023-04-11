@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+<title>Muokkaa värin tietoja</title>
+</head>
+<body>
+	<h1>Muokkaa värin tietoja</h1>
+		<div>
+			<form th:object="${muokkaaVaria}" th:action="@{/tallennaVari}" action="#" method="post">
+			<input type="hidden" id="id" th:field="*{id}" />
+		
+			<div>
+				<label>Väri:</label>
+				<input type="text" th:field="*{savy}"/>
+			</div>
+		
+			<div>
+				<label>Määrä:</label>
+				<input type="text" th:field="*{maara}"/>
+			</div>
+		
+			<div>
+				<label>Lanka:</label>
+				<select id="langat" th:field="*{lanka}">
+		 		<option th:each="lanka: ${langat}" th:value="${lanka.id}" th:text="${lanka.malli}">
+		 		</option>
+				</select>
+			</div>
+		
+			<div>
+				<input class="btn btn-sm btn-success" type="submit" value="Tallenna"></input>
+				<a class="btn btn-sm btn-danger " href="/varilista">Palaa tallentamatta</a>
+			</div>
+		
+		</form>
+		</div>
+</body>
+</html>

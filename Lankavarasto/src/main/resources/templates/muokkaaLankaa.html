@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<head>
+<title>Muokkaa langan tietoja</title>
+</head>
+<body>
+
+	<h1>Muokkaa langan tietoja</h1>
+	<div>
+		<form th:object="${muokkaaLankaa}" th:action="@{/tallennaLanka}" action="#" method="post">
+			<input type="hidden" id="id" th:field="*{id}" />
+		
+		<div>
+			<label>Langan valmistaja:</label>
+			<input type="text" th:field="*{merkki}"/>
+		</div>
+			
+		<div>
+			<label>Langan nimi:</label>
+			<input type="text"	th:field="*{malli}"/>
+		</div>
+		
+		<div>
+			<label>Langan koostumus:</label>
+			<input type="text"	th:field="*{koostumus}"/>
+		</div>
+		
+		<div>
+			<label>Langan painoluokitus:</label>
+			<input type="text"	th:field="*{luokittelu}"/>
+		</div>
+		
+		<div>
+			<label>Langan neuletiheys:</label>
+			<input type="text"	th:field="*{neuletiheys}"/>
+		</div>
+		
+		<div>
+			<label>Puikko- tai koukkusuositus:</label>
+			<input type="text"	th:field="*{suositus}"/>
+		</div>
+		
+		<div>
+			<label>Langan paino grammoina:</label>
+			<input type="text"	th:field="*{paino}"/>
+		</div>
+		
+		<div>
+			<label>Langan pituus metreinä:</label>
+			<input type="text"	th:field="*{pituus}"/>
+		</div>
+
+	<div>
+		<input class="btn btn-sm btn-success" type="submit" value="Tallenna"></input>
+		<a class="btn btn-sm btn-danger " href="/lankalista">Palaa tallentamatta</a>
+	</div>
+	</form>
+	</div>
+</body>
+</html>

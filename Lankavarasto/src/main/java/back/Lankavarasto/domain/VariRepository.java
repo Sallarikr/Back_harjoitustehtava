@@ -1,7 +1,12 @@
 package back.Lankavarasto.domain;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
-public interface VariRepository extends CrudRepository<Vari, Long>{
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface VariRepository extends JpaRepository<Vari, Long>{
+	
+
+	public	List<Vari> findBySavy(String savy);
 	
 }

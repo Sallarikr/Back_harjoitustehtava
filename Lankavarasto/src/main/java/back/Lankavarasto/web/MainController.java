@@ -1,5 +1,6 @@
 package back.Lankavarasto.web;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ import back.Lankavarasto.domain.Vari;
 import back.Lankavarasto.domain.VariRepository;
 
 @Controller
-public class YleisController {
+public class MainController {
 
 	@Autowired
 	LankaRepository lankaRepository;
@@ -23,6 +24,7 @@ public class YleisController {
 	OhjeRepository ohjeRepository;
 	@Autowired
 	VariRepository variRepository;
+	
 	
 	@GetMapping(value={"/", "index"})
 	public String naytaEtusivu() {
@@ -48,15 +50,14 @@ public class YleisController {
 		return "redirect:/lankalista";
 	}
 	
-	@GetMapping("muokkaaLankaa/{id}")
+	@GetMapping("/muokkaaLankaa/{id}")
 	public String muokkaaLankaa(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("muokkaaLankaa", lankaRepository.findAll());
-		model.addAttribute("varit", variRepository.findAll());
+		model.addAttribute("muokkaaLankaa", lankaRepository.findById(id));
 		return "muokkaaLankaa";
 	}
 	
 	@GetMapping("poistaLanka/{id}")
-	public String poistaLanka(@PathVariable("id") Long id) {
+	public String poistaLanka(@PathVariable("id") Long id, Model model) {
 		lankaRepository.deleteById(id);
 		return "redirect:/lankalista";
 	}
@@ -84,12 +85,13 @@ public class YleisController {
 
 	@GetMapping("muokkaaVaria/{id}")
 	public String muokkaaVaria(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("muokkaaVaria", variRepository.findAll());
+		model.addAttribute("muokkaaVaria", variRepository.findById(id));
+		model.addAttribute("langat", lankaRepository.findAll());
 		return "muokkaaVaria";
 	}
 	
 	@GetMapping("poistaVari/{id}")
-	public String poistaVari(@PathVariable("id") Long id) {
+	public String poistaVari(@PathVariable("id") Long id, Model model) {
 		variRepository.deleteById(id);
 		return "redirect:/varilista";
 	}
@@ -116,14 +118,15 @@ public class YleisController {
 	
 	@GetMapping("muokkaaOhjetta/{id}")
 	public String muokkaaOhjetta(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("muokkaaOhjetta", ohjeRepository.findAll());
+		model.addAttribute("muokkaaOhjetta", ohjeRepository.findById(id));
 		return "muokkaaOhjetta";
 	}
 	
-	@GetMapping("poistaOhje/{id}")
-	public String poistaOhje(@PathVariable("id") Long id) {
+	@GetMapping("/poistaOhje/{id}")
+	public String poistaOhje(@PathVariable("id") Long id, Model model) {
 		ohjeRepository.deleteById(id);
 		return "redirect:/ohjelista";
 	}
-	
+
+		
 }

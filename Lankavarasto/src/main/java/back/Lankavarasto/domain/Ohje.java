@@ -2,6 +2,7 @@ package back.Lankavarasto.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
@@ -15,7 +16,10 @@ public class Ohje {
 	@Column(name="ohje_id")
 	private Long id;
 	
-	private String suunnittelija, nimi, lahde, luokittelu;
+	@Size(min=2, max=50 ,message="Sallittu pituus on 2-50 merkkiä")
+	private String suunnittelija, nimi;
+	
+	private String lahde, luokittelu;
 	
 	public Ohje() {
 		super();

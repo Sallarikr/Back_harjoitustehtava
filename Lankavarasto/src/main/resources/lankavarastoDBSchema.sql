@@ -7,15 +7,14 @@ SET FOREIGN_KEY_CHECKS=1;
 
 CREATE TABLE lanka (
   lanka_id bigint(20) NOT NULL AUTO_INCREMENT,
-  merkki varchar(200) NOT NULL,
-  malli varchar(200) NOT NULL,
-  koostumus varchar(200) NOT NULL,
-  luokittelu varchar(200) NOT NULL,
-  neuletiheys varchar(200) NOT NULL,
-  suositus varchar(200) NOT NULL,
-  paino int(11) NOT NULL DEFAULT 0,
-  pituus int(11) NOT NULL DEFAULT 0,
-  vari_id bigint(20) NOT NULL,
+  merkki varchar(50) NOT NULL,
+  malli varchar(50) NOT NULL,
+  koostumus varchar(200),
+  luokittelu varchar(200),
+  neuletiheys varchar(200),
+  suositus varchar(200),
+  paino int(11) DEFAULT 0,
+  pituus int(11) DEFAULT 0,
   PRIMARY KEY (lanka_id));
  
 INSERT INTO lanka(merkki, malli, koostumus, luokittelu, neuletiheys, suositus, paino, pituus)
@@ -23,10 +22,10 @@ VALUES	('Novita', '7 veljestä', '75 % villaa, 25 % polyamidia', 'Aran (8 wpi)',
 		
 CREATE TABLE ohje (
   ohje_id bigint(20) NOT NULL AUTO_INCREMENT,
-  suunnittelija varchar(200) NOT NULL,
-  nimi varchar(200) NOT NULL,
-  lahde varchar(600) NOT NULL,
-  luokittelu varchar(200) NOT NULL,
+  suunnittelija varchar(50) NOT NULL,
+  nimi varchar(50) NOT NULL,
+  lahde varchar(600),
+  luokittelu varchar(50),
   PRIMARY KEY (ohje_id));
   
 INSERT INTO ohje(suunnittelija, nimi, lahde, luokittelu)
@@ -34,8 +33,8 @@ VALUES 	('Jonas Matthies', 'Book Rat', 'https://www.supergurumi.com/amigurumi-cr
 		
 CREATE TABLE vari (
   vari_id bigint(20) NOT NULL AUTO_INCREMENT,
-  vari varchar(200) NOT NULL,
-  maara_varastossa int(11) NOT NULL,
+  vari varchar(50) NOT NULL,
+  maara_varastossa int(11),
   lanka_id bigint(20) NOT NULL,
   PRIMARY KEY (vari_id),
   FOREIGN KEY (lanka_id) REFERENCES lanka (lanka_id)););

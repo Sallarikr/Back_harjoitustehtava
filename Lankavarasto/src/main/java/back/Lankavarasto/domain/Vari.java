@@ -5,6 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ public class Vari {
 	@Column(name="vari_id")
 	private Long id;
 		
+	@Size(min=2, max=50 ,message="Sallittu pituus on 2-50 merkkiä")
 	@Column(name="vari")
 	private String savy;
 	

@@ -3,6 +3,7 @@ package back.Lankavarasto.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,7 +24,10 @@ public class Lanka {
 	@Column(name="lanka_id")
 	private Long id;
 	
-	private String merkki, malli, koostumus, luokittelu, neuletiheys, suositus;
+	@Size(min=2, max=50 ,message="Sallittu pituus on 2-50 merkkiä")
+	private String merkki, malli;
+	
+	private String koostumus, luokittelu, neuletiheys, suositus;
 
 	private int paino, pituus;
 	

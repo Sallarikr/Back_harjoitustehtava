@@ -17,6 +17,8 @@
 			autocomplete="off"
 			placeholder=" "
 			th:field="*{suunnittelija}"/>
+			<div th:if="${#fields.hasErrors('suunnittelija')}" th:errors="*{suunnittelija}" class="text-danger">Error</div>
+			
 		</div>
 		
 		<div>
@@ -25,6 +27,8 @@
 			autocomplete="off"
 			placeholder=" "
 			th:field="*{nimi}"/>
+			<div th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}" class="text-danger">Error</div>
+			
 		</div>
 		
 		<div>

@@ -16,6 +16,8 @@
 			autocomplete="off"
 			placeholder=" "
 			th:field="*{savy}"/>
+			<div th:if="${#fields.hasErrors('savy')}" th:errors="*{savy}" class="text-danger">Error</div>
+			
 		</div>
 	
 		<div>

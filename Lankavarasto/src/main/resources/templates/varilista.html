@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,6 +15,26 @@
 			<a class="btn btn-success" href="/lankalista">Langat</a>
 			<a class="btn btn-warning" href="/ohjelista">Ohjeet</a>
 			
+		<div>
+		<br/>
+		<h5>Hae langan värit:</h5>
+			<form th:action="@{/varilista}" class="row align-items-center "
+				autocomplete="off">
+				<div class="col-auto">
+					<input type="text" name="haku" id="haku" placeholder="Langan nimi" th:value="${haku}" required />
+				</div>
+				<div class="col-auto">
+					<input class="btn btn-sm btn-outline-info" type="submit" value="Hae" /> 
+					<input class="btn btn-sm btn-outline-danger" type="button" value="Tyhjennä" onclick="clearSearch()" />
+				</div>
+			</form>
+		</div>
+		<script>
+			function clearSearch() {
+				window.location = "[[@{/varilista}]]";
+			}
+		</script>
+		<br/>
 	
 	<table class="table table-striped">
 		<tr>
@@ -29,13 +51,13 @@
 			<td th:text="${vari.lanka.malli}"></td>
 			<td th:text="${vari.savy}"></td>
 			<td th:text="${vari.maara}"></td>
-			<td><a class="btn btn-outline-info" th:href="@{/muokkaaVaria/{id}(id=${vari.id})}">Muokkaa</a></td>
-			<td><a class="btn btn-outline-danger" th:href="@{/poistaVari/{id}(id=${vari.id})}">Poista</a></td>
+			<td><a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-outline-info" th:href="@{/muokkaaVaria/{id}(id=${vari.id})}">Muokkaa</a></td>
+			<td><a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-outline-danger" th:href="@{/poistaVari/{id}(id=${vari.id})}">Poista</a></td>
 			
 		</tr>
 	</table>
 	
-	<a class="btn btn-info" href="/lisaaVari">Lisää langalle uusi väri</a>
+	<a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-info" href="/lisaaVari">Lisää langalle uusi väri</a>
 	
 		
 </body>

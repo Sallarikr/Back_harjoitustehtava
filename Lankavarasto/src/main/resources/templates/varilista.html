@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
 <head>
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
 <title>Lankojen värit</title>
-
 </head>
 <body>
-	<h1>Lankojen värit</h1>
-			<a class="btn btn-info" href="/">Etusivulle</a>
-			<a class="btn btn-success" href="/lankalista">Langat</a>
-			<a class="btn btn-warning" href="/ohjelista">Ohjeet</a>
-			
+	<h3 class="m-3">Lankojen värit</h3>
+	<div class="m-3">
+		<a class="btn btn-info" href="/">Etusivulle</a> <a
+			class="btn btn-info" href="/lankalista">Langat</a> <a
+			class="btn btn-info" href="/ohjelista">Ohjeet</a>
+
 		<div>
-		<br/>
-		<h5>Hae langan värit:</h5>
+			<br />
+			<h5>Hae langan värit:</h5>
 			<form th:action="@{/varilista}" class="row align-items-center "
 				autocomplete="off">
 				<div class="col-auto">
-					<input type="text" name="haku" id="haku" placeholder="Langan nimi" th:value="${haku}" required />
+					<input type="text" name="haku" id="haku" placeholder="Hakutermi"
+						th:value="${haku}" required />
 				</div>
 				<div class="col-auto">
-					<input class="btn btn-sm btn-outline-info" type="submit" value="Hae" /> 
-					<input class="btn btn-sm btn-outline-danger" type="button" value="Tyhjennä" onclick="clearSearch()" />
+					<input class="btn btn-sm btn-outline-info" type="submit"
+						value="Hae" /> <input class="btn btn-sm btn-outline-danger"
+						type="button" value="Tyhjennä" onclick="clearSearch()" />
 				</div>
 			</form>
 		</div>
@@ -34,31 +35,32 @@
 				window.location = "[[@{/varilista}]]";
 			}
 		</script>
-		<br/>
-	
-	<table class="table table-striped">
-		<tr>
-			<th>Valmistaja</th>
-			<th>Lanka</th>
-			<th>Väri</th>
-			<th>Varastomäärä grammoina</th>	
-			<th></th>
-			<th></th>
-		</tr>
-	
-		<tr th:each="vari : ${varit}">
-			<td th:text="${vari.lanka.merkki}"></td>
-			<td th:text="${vari.lanka.malli}"></td>
-			<td th:text="${vari.savy}"></td>
-			<td th:text="${vari.maara}"></td>
-			<td><a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-outline-info" th:href="@{/muokkaaVaria/{id}(id=${vari.id})}">Muokkaa</a></td>
-			<td><a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-outline-danger" th:href="@{/poistaVari/{id}(id=${vari.id})}">Poista</a></td>
-			
-		</tr>
-	</table>
-	
-	<a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-info" href="/lisaaVari">Lisää langalle uusi väri</a>
-	
-		
+		<br />
+
+		<table class="table table-striped">
+			<tr>
+				<th>Valmistaja</th>
+				<th>Lanka</th>
+				<th>Väri</th>
+				<th>Varastomäärä grammoina</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="vari : ${varit}">
+				<td th:text="${vari.lanka.merkki}"></td>
+				<td th:text="${vari.lanka.malli}"></td>
+				<td th:text="${vari.savy}"></td>
+				<td th:text="${vari.maara}"></td>
+				<td><a sec:authorize="hasAnyAuthority('ADMIN')"
+					class="btn btn-outline-info"
+					th:href="@{/muokkaaVaria/{id}(id=${vari.id})}">Muokkaa</a></td>
+				<td><a sec:authorize="hasAnyAuthority('ADMIN')"
+					class="btn btn-outline-danger"
+					th:href="@{/poistaVari/{id}(id=${vari.id})}">Poista</a></td>
+			</tr>
+		</table>
+		<a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-success"
+			href="/lisaaVari">Lisää langalle uusi väri</a>
+	</div>
 </body>
 </html>

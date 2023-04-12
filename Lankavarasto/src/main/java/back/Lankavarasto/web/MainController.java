@@ -1,6 +1,5 @@
 package back.Lankavarasto.web;
 
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -44,7 +43,7 @@ public class MainController {
 	AppUserRepository appUserRepository;
 	@Autowired
 	LankaService lankaService;
-	
+
 	@GetMapping("/login")
 	public String login() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -53,13 +52,12 @@ public class MainController {
 		}
 		return "redirect:/";
 	}
-	
-	
-	@GetMapping(value={"/"})
+
+	@GetMapping(value = { "/" })
 	public String naytaEtusivu() {
 		return "index";
 	}
-	
+
 	@GetMapping("/lankalista")
 	public String naytaLangat(Model model, @Param("haku") String haku) {
 		model.addAttribute("langat", lankaRepository.findAll());
@@ -69,30 +67,31 @@ public class MainController {
 		model.addAttribute("haku", haku);
 		return "lankalista";
 	}
-	
-	@PreAuthorize("hasAuthority('ADMIN')")	
+
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/lisaaLanka")
 	public String lisaaLanka(Model model) {
 		model.addAttribute("lisaaUusiLanka", new Lanka());
 		return "lisaaLanka";
 	}
-	
+
 	@PostMapping("/tallennaLanka")
-	public String tallennaLanka(@Valid @ModelAttribute("lisaaUusiLanka") Lanka lanka, BindingResult bindingResult, Model model) {
+	public String tallennaLanka(@Valid @ModelAttribute("lisaaUusiLanka") Lanka lanka, BindingResult bindingResult,
+			Model model) {
 		if (bindingResult.hasErrors()) {
 			return "lisaaLanka";
 		}
 		lankaRepository.save(lanka);
 		return "redirect:/lankalista";
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/muokkaaLankaa/{id}")
 	public String muokkaaLankaa(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("muokkaaLankaa", lankaRepository.findById(id));
 		return "muokkaaLankaa";
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/poistaLanka/{id}")
 	public String poistaLanka(@PathVariable("id") Long id, Model model) {
@@ -105,9 +104,9 @@ public class MainController {
 		List<Vari> varit = lankaService.listAll(haku);
 		model.addAttribute("varit", varit);
 		model.addAttribute("haku", haku);
-		return "varilista";		
-	}	
-		
+		return "varilista";
+	}
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/lisaaVari")
 	public String lisaaVari(Model model) {
@@ -115,9 +114,10 @@ public class MainController {
 		model.addAttribute("langat", lankaRepository.findAll());
 		return "lisaaVari";
 	}
-	
+
 	@PostMapping("/tallennaVari")
-	public String tallennaVari(@Valid @ModelAttribute("lisaaUusiVari") Vari vari, BindingResult bindingResult, Model model) {
+	public String tallennaVari(@Valid @ModelAttribute("lisaaUusiVari") Vari vari, BindingResult bindingResult,
+			Model model) {
 		if (bindingResult.hasErrors()) {
 			return "lisaaVari";
 		}
@@ -125,10 +125,6 @@ public class MainController {
 		return "redirect:/varilista";
 	}
 
-	
-	
-	
-	
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/muokkaaVaria/{id}")
 	public String muokkaaVaria(@PathVariable("id") Long id, Model model) {
@@ -136,7 +132,7 @@ public class MainController {
 		model.addAttribute("langat", lankaRepository.findAll());
 		return "muokkaaVaria";
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/poistaVari/{id}")
 	public String poistaVari(@PathVariable("id") Long id, Model model) {
@@ -144,8 +140,6 @@ public class MainController {
 		return "redirect:/varilista";
 	}
 
-	
-	
 	@GetMapping("/ohjelista")
 	public String naytaOhjeet(Model model, @Param("haku") String haku) {
 		model.addAttribute("ohjeet", ohjeRepository.findAll());
@@ -161,9 +155,10 @@ public class MainController {
 		model.addAttribute("lisaaUusiOhje", new Ohje());
 		return "lisaaOhje";
 	}
-	
+
 	@PostMapping("/tallennaOhje")
-	public String tallennaOhje(@Valid @ModelAttribute("lisaaUusiOhje") Ohje ohje, BindingResult bindingResult, Model model) {
+	public String tallennaOhje(@Valid @ModelAttribute("lisaaUusiOhje") Ohje ohje, BindingResult bindingResult,
+			Model model) {
 		if (bindingResult.hasErrors()) {
 			return "lisaaOhje";
 		}
@@ -171,27 +166,24 @@ public class MainController {
 		return "redirect:/ohjelista";
 	}
 
-	
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/muokkaaOhjetta/{id}")
 	public String muokkaaOhjetta(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("muokkaaOhjetta", ohjeRepository.findById(id));
 		return "muokkaaOhjetta";
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/poistaOhje/{id}")
 	public String poistaOhje(@PathVariable("id") Long id, Model model) {
 		ohjeRepository.deleteById(id);
 		return "redirect:/ohjelista";
 	}
-	
+
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public String handleRuntimeException(Model model, RuntimeException ex) {
 		model.addAttribute("virhe", ex.getMessage());
 		return "error";
 	}
-
-
 }

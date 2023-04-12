@@ -15,26 +15,25 @@ public class Vari {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@Column(name="vari_id")
+
+	@Column(name = "vari_id")
 	private Long id;
-		
-	@Size(min=2, max=50 ,message="Sallittu pituus on 2-50 merkkiä")
-	@Column(name="vari")
+
+	@Size(min = 2, max = 50, message = "Sallittu pituus on 2-50 merkkiä")
+	@Column(name = "vari")
 	private String savy;
-	
-	@Column(name="maara_varastossa")
+
+	@Column(name = "maara_varastossa")
 	private int maara;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "lanka_id")
 	private Lanka lanka;
-	
-	
+
 	public Vari() {
 		super();
 	}
-	
+
 	public Vari(String savy, int maara) {
 		super();
 		this.savy = savy;
@@ -48,8 +47,6 @@ public class Vari {
 		this.maara = maara;
 		this.lanka = lanka;
 	}
-
-	
 
 	public Long getId() {
 		return id;
@@ -87,6 +84,4 @@ public class Vari {
 	public String toString() {
 		return "Vari [id=" + id + ", savy=" + savy + ", maara=" + maara + ", lanka=" + lanka + "]";
 	}
-
-	
 }

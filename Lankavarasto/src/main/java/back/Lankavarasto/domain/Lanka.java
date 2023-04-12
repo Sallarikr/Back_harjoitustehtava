@@ -20,17 +20,17 @@ public class Lanka {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@Column(name="lanka_id")
+
+	@Column(name = "lanka_id")
 	private Long id;
-	
-	@Size(min=2, max=50 ,message="Sallittu pituus on 2-50 merkkiä")
+
+	@Size(min = 2, max = 50, message = "Sallittu pituus on 2-50 merkkiä")
 	private String merkki, malli;
-	
+
 	private String koostumus, luokittelu, neuletiheys, suositus;
 
 	private int paino, pituus;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "lanka")
 	@JsonIgnore
 	private List<Vari> varit;
@@ -51,10 +51,10 @@ public class Lanka {
 		this.suositus = suositus;
 		this.paino = paino;
 		this.pituus = pituus;
-	}	
+	}
 
-	public Lanka(String merkki, String malli, String koostumus, String luokittelu, String neuletiheys,
-			String suositus, int paino, int pituus, List<Vari> varit) {
+	public Lanka(String merkki, String malli, String koostumus, String luokittelu, String neuletiheys, String suositus,
+			int paino, int pituus, List<Vari> varit) {
 		super();
 		this.merkki = merkki;
 		this.malli = malli;
@@ -65,7 +65,6 @@ public class Lanka {
 		this.paino = paino;
 		this.pituus = pituus;
 		this.varit = varit;
-
 	}
 
 	public Long getId() {

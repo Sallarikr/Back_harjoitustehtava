@@ -12,15 +12,15 @@ public class Ohje {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@Column(name="ohje_id")
+
+	@Column(name = "ohje_id")
 	private Long id;
-	
-	@Size(min=2, max=50 ,message="Sallittu pituus on 2-50 merkkiä")
+
+	@Size(min = 2, max = 50, message = "Sallittu pituus on 2-50 merkkiä")
 	private String suunnittelija, nimi;
-	
+
 	private String lahde, luokittelu;
-	
+
 	public Ohje() {
 		super();
 	}

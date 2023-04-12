@@ -31,27 +31,25 @@ public class RestController {
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/restLangat")
-	public @ResponseBody List<Lanka> naytaRestLangat(){
+	public @ResponseBody List<Lanka> naytaRestLangat() {
 		return (List<Lanka>) lankaRepository.findAll();
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/restOhjeet")
-	public @ResponseBody List<Ohje> naytaRestOhjeet(){
+	public @ResponseBody List<Ohje> naytaRestOhjeet() {
 		return (List<Ohje>) ohjeRepository.findAll();
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/restVarit")
-	public @ResponseBody List<Vari> naytaRestVarit(){
+	public @ResponseBody List<Vari> naytaRestVarit() {
 		return (List<Vari>) variRepository.findAll();
 	}
-	
+
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/restUserit")
-	public @ResponseBody List<AppUser> naytaRestUserit(){
+	public @ResponseBody List<AppUser> naytaRestUserit() {
 		return (List<AppUser>) appUserRepository.findAll();
 	}
-	
-	
 }

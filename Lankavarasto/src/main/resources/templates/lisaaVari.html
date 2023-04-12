@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<head>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Lisää langalle uusi väri</title>
 </head>
 <body>
-	<h1>Lisää langalle uusi väri</h1>
-	<div>
-		<form th:object="${lisaaUusiVari}" th:action="@{/tallennaVari}" action="#" method="post">
+	<h3 class="m-3">Lisää langalle uusi väri</h3>
+	<div class="m-3">
+		<form th:object="${lisaaUusiVari}" th:action="@{/tallennaVari}"
+			action="#" method="post">
 
-		<div>
-			<label>Langan väri:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{savy}"/>
-			<div th:if="${#fields.hasErrors('savy')}" th:errors="*{savy}" class="text-danger">Error</div>
-			
-		</div>
-	
-		<div>
-			<label>Väriä varastossa /g:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{maara}"/>
-		</div>
-	
-		<div>
-			<label>Väri:</label>
-			<select id="langat" th:field="*{lanka}">
-	 		<option th:each="lanka: ${langat}" th:value="${lanka.id}" th:text="${lanka.malli}">
-	 		</option>
-			</select>
-		</div>
-	
-		<div>
-			<input class="btn btn-sm btn-success" type="submit" value="Lisää väri"></input>
-			<a class="btn btn-sm btn-danger " href="/varilista">Palaa tallentamatta</a>
-		</div>
+			<div>
+				<label>Langan väri:</label> <input type="text" autocomplete="off"
+					placeholder=" " th:field="*{savy}" />
+				<div th:if="${#fields.hasErrors('savy')}" th:errors="*{savy}"
+					class="text-danger">Error</div>
+			</div>
+
+			<div>
+				<label>Väriä varastossa /g:</label> <input type="text"
+					autocomplete="off" placeholder=" " th:field="*{maara}" />
+			</div>
+
+			<div>
+				<label>Väri:</label> <select id="langat" th:field="*{lanka}">
+					<option th:each="lanka: ${langat}" th:value="${lanka.id}"
+						th:text="${lanka.malli}"></option>
+				</select>
+			</div>
+
+			<div>
+				<input class="btn btn-sm btn-success" type="submit"
+					value="Lisää väri"></input> <a class="btn btn-sm btn-danger "
+					href="/varilista">Palaa tallentamatta</a>
+			</div>
 		</form>
 	</div>
 </body>

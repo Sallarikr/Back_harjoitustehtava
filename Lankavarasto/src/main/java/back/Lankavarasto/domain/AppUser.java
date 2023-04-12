@@ -8,25 +8,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="appuser")
+@Table(name = "appuser")
 public class AppUser {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false, updatable = false)
-    private Long id;
 
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id", nullable = false, updatable = false)
+	private Long id;
 
-    @Column(name = "password", nullable = false)
-    private String passwordHash;
+	@Column(name = "username", nullable = false, unique = true)
+	private String username;
 
-    @Column(name = "role", nullable = false)
-    private String role;
-    
-    public AppUser() {
-    }
+	@Column(name = "password", nullable = false)
+	private String passwordHash;
+
+	@Column(name = "role", nullable = false)
+	private String role;
+
+	public AppUser() {
+	}
 
 	public AppUser(String username, String passwordHash, String role) {
 		super();
@@ -66,7 +66,4 @@ public class AppUser {
 	public void setRole(String role) {
 		this.role = role;
 	}
-    
-
-
 }

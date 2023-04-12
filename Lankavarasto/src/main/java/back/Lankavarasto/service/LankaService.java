@@ -15,27 +15,30 @@ import back.Lankavarasto.domain.VariRepository;
 @Service
 public class LankaService {
 
-	@Autowired VariRepository variRepository;
-	
-	public List<Vari> listAll(String haku){
+	@Autowired
+	VariRepository variRepository;
+
+	public List<Vari> listAll(String haku) {
 		if (haku != null) {
 			return variRepository.hae(haku);
 		}
 		return variRepository.findAll();
 	}
-	
-	@Autowired LankaRepository lankaRepository;
-	
-	public List<Lanka> listAll2(String haku){
+
+	@Autowired
+	LankaRepository lankaRepository;
+
+	public List<Lanka> listAll2(String haku) {
 		if (haku != null) {
 			return lankaRepository.hae(haku);
 		}
 		return lankaRepository.findAll();
 	}
-	
-	@Autowired OhjeRepository ohjeRepository;
-	
-	public List<Ohje> listAll3(String haku){
+
+	@Autowired
+	OhjeRepository ohjeRepository;
+
+	public List<Ohje> listAll3(String haku) {
 		if (haku != null) {
 			return ohjeRepository.hae(haku);
 		}

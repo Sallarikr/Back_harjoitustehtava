@@ -1,22 +1,25 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>Lanka- ja ohjevarasto</title>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Lanka- ja ohjevarasto</title>
 </head>
 <body>
-	<div>
-		<h1>Lanka- ja käsitöiden ohjevarasto</h1>
-		
-		<form class="m-2" th:action="@{/logout}" method="post">
-			<input class="btn btn-sm btn-outline-danger" type="submit" value="Kirjaudu ulos" />
-		</form>
+	<div sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
+		<span class="m-3"> <a>Olet kirjautunut käyttäjänä: </a> <a>[[${#httpServletRequest.remoteUser}]]</a>
+		</span>
 	</div>
-		
-		
-			<a class="btn btn-info" href="/lankalista"{>Langat</a>
-			<a class="btn btn-success" href="/ohjelista"{>Ohjeet</a>
- 			
+	<div sec:authorize="hasAnyAuthority('ADMIN', 'USER')" class="m-3">
+		<h3>Lanka- ja käsitöiden ohjevarasto</h3>
+		<a class="btn btn-info" href="/lankalista">Langat</a> <a
+			class="btn btn-info" href="/varilista">Lankojen värit</a> <a
+			class="btn btn-info" href="/ohjelista">Ohjeet</a>
+		<form class="mt-1" th:action="@{/logout}" method="post">
+			<input class="btn btn-danger" type="submit" value="Kirjaudu ulos" />
+		</form>
 	</div>
 </body>
 </html>

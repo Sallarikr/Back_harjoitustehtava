@@ -10,17 +10,15 @@ import back.Lankavarasto.domain.VariRepository;
 
 @SpringBootApplication
 public class LankavarastoApplication {
-	
+
 	@Autowired
 	LankaRepository lankaRepository;
 	@Autowired
 	OhjeRepository ohjeRepository;
 	@Autowired
 	VariRepository variRepository;
-	@Autowired
-	
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(LankavarastoApplication.class, args);
-	}	
+	}
 }

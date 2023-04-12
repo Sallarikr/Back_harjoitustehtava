@@ -1,91 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Lisää uusi lanka</title>
 </head>
 <body>
-	<h1>Lisää uusi lanka</h1>
-	<div>
-		<form th:object="${lisaaUusiLanka}" th:action="@{/tallennaLanka}" action="#" method="post">
-				
-		<div>
-			<label>Langan valmistaja:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{merkki}"/>
-			<div th:if="${#fields.hasErrors('merkki')}" th:errors="*{merkki}" class="text-danger">Error</div>
-			
-		</div>
-		
-		<div>
-			<label>Langan nimi:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{malli}"/>
-			<div th:if="${#fields.hasErrors('malli')}" th:errors="*{malli}" class="text-danger">Error</div>
-			
-		</div>
-			
-		
-		<div>
-			<label>Langan koostumus:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{koostumus}"/>
-		</div>
-		
-		<div>
-			<label>Langan painoluokitus:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{luokittelu}"/>
-		</div>
-		
-		<div>			
-			<label>Langan neuletiheys:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{neuletiheys}"/>
-		</div>
-		
-		<div>
-			<label>Puikko- tai koukkusuositus:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{suositus}"/>
-		</div>
-		
-		<div>
-			<label>Langan paino grammoina:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{paino}"/>
-		</div>
-		
-		<div>
-			<label>Langan pituus metreinä:</label>
-			<input type="text"
-			autocomplete="off"
-			placeholder=" "
-			th:field="*{pituus}"/>
-		</div>
-		
-	
-				
-		<div>
-			<input class="btn btn-sm btn-success" type="submit" value="Lisää lanka"></input>
-			<a class="btn btn-sm btn-danger " href="/lankalista">Palaa tallentamatta</a>
-		</div>
+	<h3 class="m-3">Lisää uusi lanka</h3>
+	<div class="m-3">
+		<form th:object="${lisaaUusiLanka}" th:action="@{/tallennaLanka}"
+			action="#" method="post">
+
+			<div>
+				<label>Langan valmistaja:</label> <input type="text"
+					autocomplete="off" placeholder=" " th:field="*{merkki}" />
+				<div th:if="${#fields.hasErrors('merkki')}" th:errors="*{merkki}"
+					class="text-danger">Error</div>
+			</div>
+
+			<div>
+				<label>Langan nimi:</label> <input type="text" autocomplete="off"
+					placeholder=" " th:field="*{malli}" />
+				<div th:if="${#fields.hasErrors('malli')}" th:errors="*{malli}"
+					class="text-danger">Error</div>
+			</div>
+
+			<div>
+				<label>Langan koostumus:</label> <input type="text"
+					autocomplete="off" placeholder=" " th:field="*{koostumus}" />
+			</div>
+
+			<div>
+				<label>Langan painoluokitus:</label> <input type="text"
+					autocomplete="off" placeholder=" " th:field="*{luokittelu}" />
+			</div>
+
+			<div>
+				<label>Langan neuletiheys:</label> <input type="text"
+					autocomplete="off" placeholder=" " th:field="*{neuletiheys}" />
+			</div>
+
+			<div>
+				<label>Puikko- tai koukkusuositus:</label> <input type="text"
+					autocomplete="off" placeholder=" " th:field="*{suositus}" />
+			</div>
+
+			<div>
+				<label>Langan paino grammoina:</label> <input type="text"
+					autocomplete="off" placeholder=" " th:field="*{paino}" />
+			</div>
+
+			<div>
+				<label>Langan pituus metreinä:</label> <input type="text"
+					autocomplete="off" placeholder=" " th:field="*{pituus}" />
+			</div>
+
+			<div>
+				<input class="btn btn-sm btn-success" type="submit"
+					value="Lisää lanka"></input> <a class="btn btn-sm btn-danger "
+					href="/lankalista">Palaa tallentamatta</a>
+			</div>
 		</form>
 	</div>
 </body>

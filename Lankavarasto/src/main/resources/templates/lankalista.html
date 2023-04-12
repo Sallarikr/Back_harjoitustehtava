@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
 <head>
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Langat</title>
 </head>
-
 <body>
-	<h1>Langat</h1>
-	
-	<a class="btn btn-info" href="/">Etusivulle</a>
-	<a class="btn btn-success" href="/ohjelista">Ohjeet</a>
-	
-	<div>
-		<br/>
-		<h5>Hae lankaa tai langan ominaisuutta:</h5>
+	<h3 class="m-3">Langat</h3>
+	<div class="m-3">
+		<a class="btn btn-info" href="/">Etusivulle</a> <a
+			class="btn btn-info" href="/varilista">Lankojen värit</a> <a
+			class="btn btn-info" href="/ohjelista">Ohjeet</a>
+		<div>
+			<br />
+			<h5>Hae lankaa tai langan ominaisuutta:</h5>
 			<form th:action="@{/lankalista}" class="row align-items-center "
 				autocomplete="off">
 				<div class="col-auto">
-					<input type="text" name="haku" id="haku" placeholder="Hakutermi" th:value="${haku}" required />
+					<input type="text" name="haku" id="haku" placeholder="Hakutermi"
+						th:value="${haku}" required />
 				</div>
 				<div class="col-auto">
-					<input class="btn btn-sm btn-outline-info" type="submit" value="Hae" /> 
-					<input class="btn btn-sm btn-outline-danger" type="button" value="Tyhjennä" onclick="clearSearch()" />
+					<input class="btn btn-sm btn-outline-info" type="submit"
+						value="Hae" /> <input class="btn btn-sm btn-outline-danger"
+						type="button" value="Tyhjennä" onclick="clearSearch()" />
 				</div>
 			</form>
 		</div>
@@ -33,41 +34,40 @@
 				window.location = "[[@{/lankalista}]]";
 			}
 		</script>
-		<br/>
-	
-			
-	<table class="table table-striped">
-		<tr>
-			<th>Valmistaja</th>
-			<th>Lanka</th>
-			<th>Koostumus</th>
-			<th>Painoluokitus</th>
-			<th>Neuletiheys</th>
-			<th>Puikko- tai virkkuukoukkusuositus</th>
-			<th>Kerän paino /g</th>
-			<th>Langan pituus/m</th>
-			<th></th>
-			<th></th>
-		</tr>
-	
-		<tr th:each="lanka : ${langat}">
-			<td th:text="${lanka.merkki}"></td>
-			<td th:text="${lanka.malli}"></td> 
-			<td th:text="${lanka.koostumus}"></td>
-			<td th:text="${lanka.luokittelu}"></td>
-			<td th:text="${lanka.neuletiheys}"></td>
-			<td th:text="${lanka.suositus}"></td>
-			<td th:text="${lanka.paino}"></td>
-			<td th:text="${lanka.pituus}"></td>
-			<td><a a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-outline-info" th:href="@{/muokkaaLankaa/{id}(id=${lanka.id})}">Muokkaa</a></td>
-			<td><a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-outline-danger" th:href="@{/poistaLanka/{id}(id=${lanka.id})}">Poista</a></td>
-		</tr>
-	</table>	
-			
-	<a a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-success" href="/lisaaLanka">Lisää uusi lanka</a>
-	<a a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-info" href="/lisaaVari">Lisää langalle uusi väri</a>
-	<a class="btn btn-info" href="/varilista">Näytä kaikkien lankojen värit</a>
-	
-	
+		<br />
+
+		<table class="table table-striped">
+			<tr>
+				<th>Valmistaja</th>
+				<th>Lanka</th>
+				<th>Koostumus</th>
+				<th>Painoluokitus</th>
+				<th>Neuletiheys</th>
+				<th>Puikko- tai virkkuukoukkusuositus</th>
+				<th>Kerän paino /g</th>
+				<th>Langan pituus/m</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="lanka : ${langat}">
+				<td th:text="${lanka.merkki}"></td>
+				<td th:text="${lanka.malli}"></td>
+				<td th:text="${lanka.koostumus}"></td>
+				<td th:text="${lanka.luokittelu}"></td>
+				<td th:text="${lanka.neuletiheys}"></td>
+				<td th:text="${lanka.suositus}"></td>
+				<td th:text="${lanka.paino}"></td>
+				<td th:text="${lanka.pituus}"></td>
+				<td><a sec:authorize="hasAnyAuthority('ADMIN')"
+					class="btn btn-outline-info"
+					th:href="@{/muokkaaLankaa/{id}(id=${lanka.id})}">Muokkaa</a></td>
+				<td><a sec:authorize="hasAnyAuthority('ADMIN')"
+					class="btn btn-outline-danger"
+					th:href="@{/poistaLanka/{id}(id=${lanka.id})}">Poista</a></td>
+			</tr>
+		</table>
+		<a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-success"
+			href="/lisaaLanka">Lisää uusi lanka</a>
+	</div>
 </body>
 </html>

@@ -1,47 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
 <head>
 <title>Muokkaa ohjeen tietoja</title>
 </head>
 <body>
-
-
-<h1>Muokkaa ohjeen tietoja</h1>
-	<div>
-		<form th:object="${muokkaaOhjetta}" th:action="@{/tallennaOhje}" action="#" method="post">
+	<h3 class="m-3">Muokkaa ohjeen tietoja</h3>
+	<div class="m-3">
+		<form th:object="${muokkaaOhjetta}" th:action="@{/tallennaOhje}"
+			action="#" method="post">
 			<input type="hidden" id="id" th:field="*{id}" />
-		
-		<div>
-			<label>Suunnittelija:</label>
-			<input type="text" th:field="*{suunnittelija}"/>
+
+			<div>
+				<label>Suunnittelija:</label> <input type="text"
+					th:field="*{suunnittelija}" />
 			</div>
 
-			
-	<div>
-			<label>Nimi:</label>
-			<input type="text"	th:field="*{nimi}"/>
-		</div>
-		
-		<div>
-			<label>Lähde:</label>
-			<input type="text"	th:field="*{lahde}"/>
-		</div>
-		
-		<div>
-			<label>Luokittelu:</label>
-			<input type="text"	th:field="*{luokittelu}"/>
-		</div>
-		
-		<div>
-			<input class="btn btn-success" type="submit" value="Tallenna"></input>
-			<a class="btn btn-danger " href="/ohjelista">Palaa tallentamatta</a>
-		</div>
-		
-</form>
-</div>
+			<div>
+				<label>Nimi:</label> <input type="text" th:field="*{nimi}" />
+			</div>
 
+			<div>
+				<label>Lähde:</label> <input type="text" th:field="*{lahde}" />
+			</div>
+
+			<div>
+				<label>Luokittelu:</label> <input type="text"
+					th:field="*{luokittelu}" />
+			</div>
+
+			<div>
+				<input class="btn btn-success" type="submit" value="Tallenna"></input>
+				<a class="btn btn-danger " href="/ohjelista">Palaa tallentamatta</a>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

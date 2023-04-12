@@ -2,29 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Ohjeet</title>
-
 </head>
 <body>
-	<h1>Ohjeet</h1>
-	
-			<a class="btn btn-info" href="/">Etusivulle</a>
-			<a class="btn btn-success" href="/lankalista">Langat</a>
-			
-			
-			<div>
-		<br/>
-		<h5>Hae ohjeen tiedot:</h5>
+	<h3 class="m-3">Ohjeet</h3>
+	<div class="m-3">
+		<a class="btn btn-info" href="/">Etusivulle</a> <a
+			class="btn btn-info" href="/lankalista">Langat</a> <a
+			class="btn btn-info" href="/varilista">Lankojen värit</a>
+
+		<div>
+			<br />
+			<h5>Hae ohjeen tiedot:</h5>
 			<form th:action="@{/ohjelista}" class="row align-items-center "
 				autocomplete="off">
 				<div class="col-auto">
-					<input type="text" name="haku" id="haku" placeholder="Hakutermi" th:value="${haku}" required />
+					<input type="text" name="haku" id="haku" placeholder="Hakutermi"
+						th:value="${haku}" required />
 				</div>
 				<div class="col-auto">
-					<input class="btn btn-sm btn-outline-info" type="submit" value="Hae" /> 
-					<input class="btn btn-sm btn-outline-danger" type="button" value="Tyhjennä" onclick="clearSearch()" />
+					<input class="btn btn-sm btn-outline-info" type="submit"
+						value="Hae" /> <input class="btn btn-sm btn-outline-danger"
+						type="button" value="Tyhjennä" onclick="clearSearch()" />
 				</div>
 			</form>
 		</div>
@@ -33,32 +35,32 @@
 				window.location = "[[@{/ohjelista}]]";
 			}
 		</script>
-		<br/>
-	
-			
-	<table class="table table-striped">
-		<tr>
-			<th>Suunnittelija</th>
-			<th>Mallin nimi</th>
-			<th>Lähde</th>
-			<th>Tarvittavan langan luokittelu</th>
-			<th></th>
-			<th></th>
-		</tr>
-		
-		<tr th:each="ohje : ${ohjeet}">
-			<td th:text="${ohje.suunnittelija}"></td>
-			<td th:text="${ohje.nimi}"></td>
-			<td th:text="${ohje.lahde}"></td>	
-			<td th:text="${ohje.luokittelu}"></td>
-			<td><a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-outline-info" th:href="@{/muokkaaOhjetta/{id}(id=${ohje.id})}">Muokkaa</a></td>
-			<td><a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-outline-danger" th:href="@{/poistaOhje/{id}(id=${ohje.id})}">Poista</a></td>
-			
-		</tr>
-			
-	</table>
-	
-	<a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-success" href="/lisaaOhje">Lisää uusi ohje</a>
-	
+		<br />
+
+		<table class="table table-striped">
+			<tr>
+				<th>Suunnittelija</th>
+				<th>Mallin nimi</th>
+				<th>Lähde</th>
+				<th>Tarvittavan langan luokittelu</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="ohje : ${ohjeet}">
+				<td th:text="${ohje.suunnittelija}"></td>
+				<td th:text="${ohje.nimi}"></td>
+				<td th:text="${ohje.lahde}"></td>
+				<td th:text="${ohje.luokittelu}"></td>
+				<td><a sec:authorize="hasAnyAuthority('ADMIN')"
+					class="btn btn-outline-info"
+					th:href="@{/muokkaaOhjetta/{id}(id=${ohje.id})}">Muokkaa</a></td>
+				<td><a sec:authorize="hasAnyAuthority('ADMIN')"
+					class="btn btn-outline-danger"
+					th:href="@{/poistaOhje/{id}(id=${ohje.id})}">Poista</a></td>
+			</tr>
+		</table>
+		<a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-success"
+			href="/lisaaOhje">Lisää uusi ohje</a>
+	</div>
 </body>
 </html>

@@ -2,12 +2,16 @@ package back.Lankavarasto.web;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import back.Lankavarasto.domain.AppUserRepository;
 import back.Lankavarasto.domain.Lanka;
 import back.Lankavarasto.domain.LankaRepository;
 import back.Lankavarasto.domain.Ohje;
@@ -24,13 +28,23 @@ public class MainController {
 	OhjeRepository ohjeRepository;
 	@Autowired
 	VariRepository variRepository;
+	@Autowired
+	AppUserRepository appUserRepository;
+	
+	@GetMapping("/login")
+	public String login() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "login";
+		}
+		return "redirect:/";
+	}
 	
 	
-	@GetMapping(value={"/", "index"})
+	@GetMapping(value={"/"})
 	public String naytaEtusivu() {
 		return "index";
 	}
-	
 	
 	@GetMapping("/lankalista")
 	public String naytaLangat(Model model) {
@@ -44,7 +58,7 @@ public class MainController {
 		return "lisaaLanka";
 	}
 	
-	@PostMapping("tallennaLanka")
+	@PostMapping("/tallennaLanka")
 	public String tallennaLanka(Lanka lanka) {
 		lankaRepository.save(lanka);
 		return "redirect:/lankalista";
@@ -56,13 +70,11 @@ public class MainController {
 		return "muokkaaLankaa";
 	}
 	
-	@GetMapping("poistaLanka/{id}")
+	@GetMapping("/poistaLanka/{id}")
 	public String poistaLanka(@PathVariable("id") Long id, Model model) {
 		lankaRepository.deleteById(id);
 		return "redirect:/lankalista";
 	}
-
-	
 
 	@GetMapping("/varilista")
 	public String naytaVarit(Model model) {
@@ -70,6 +82,12 @@ public class MainController {
 		return "varilista";
 	}	
 
+	@GetMapping("/langanVarit/{id}")
+	public String naytaVarit(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("vari", variRepository.findById(id));
+		return "langanVarit";
+	}	
+	
 	@GetMapping("/lisaaVari")
 	public String lisaaVari(Model model) {
 		model.addAttribute("lisaaUusiVari", new Vari());
@@ -77,20 +95,20 @@ public class MainController {
 		return "lisaaVari";
 	}
 	
-	@PostMapping("tallennaVari")
+	@PostMapping("/tallennaVari")
 	public String tallennaVari(Vari vari) {
 		variRepository.save(vari);
 		return "redirect:/varilista";
 	}
 
-	@GetMapping("muokkaaVaria/{id}")
+	@GetMapping("/muokkaaVaria/{id}")
 	public String muokkaaVaria(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("muokkaaVaria", variRepository.findById(id));
 		model.addAttribute("langat", lankaRepository.findAll());
 		return "muokkaaVaria";
 	}
 	
-	@GetMapping("poistaVari/{id}")
+	@GetMapping("/poistaVari/{id}")
 	public String poistaVari(@PathVariable("id") Long id, Model model) {
 		variRepository.deleteById(id);
 		return "redirect:/varilista";
@@ -110,13 +128,13 @@ public class MainController {
 		return "lisaaOhje";
 	}
 	
-	@PostMapping("tallennaOhje")
+	@PostMapping("/tallennaOhje")
 	public String tallennaOhje(Ohje ohje) {
 		ohjeRepository.save(ohje);
 		return "redirect:/ohjelista";
 	}
 	
-	@GetMapping("muokkaaOhjetta/{id}")
+	@GetMapping("/muokkaaOhjetta/{id}")
 	public String muokkaaOhjetta(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("muokkaaOhjetta", ohjeRepository.findById(id));
 		return "muokkaaOhjetta";
@@ -127,6 +145,4 @@ public class MainController {
 		ohjeRepository.deleteById(id);
 		return "redirect:/ohjelista";
 	}
-
-		
 }

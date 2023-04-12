@@ -9,7 +9,7 @@
 <body>
 	<h1>Langat</h1>
 	
-	<a class="btn btn-info" href="/index">Etusivulle</a>
+	<a class="btn btn-info" href="/">Etusivulle</a>
 	<a class="btn btn-success" href="/ohjelista">Ohjeet</a>
 			
 	<table class="table table-striped">
@@ -22,7 +22,7 @@
 			<th>Puikko- tai virkkuukoukkusuositus</th>
 			<th>Kerän paino /g</th>
 			<th>Langan pituus/m</th>
-			<th>Väri</th>
+			<th></th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -36,7 +36,7 @@
 			<td th:text="${lanka.suositus}"></td>
 			<td th:text="${lanka.paino}"></td>
 			<td th:text="${lanka.pituus}"></td>
-			
+			<td><a class="btn btn-outline-warning" href="@{/langanVarit/{id}(id=${vari.id})}">Näytä värit</a></td>
 
 			<td><a class="btn btn-outline-info" th:href="@{/muokkaaLankaa/{id}(id=${lanka.id})}">Muokkaa</a></td>
 			<td><a class="btn btn-outline-danger" th:href="@{/poistaLanka/{id}(id=${lanka.id})}">Poista</a></td>
@@ -45,7 +45,6 @@
 	</table>	
 			
 	<a class="btn btn-success" href="/lisaaLanka">Lisää uusi lanka</a>
-		<a class="btn btn-warning" href="/varilista">Näytä lankojen värit</a>
 	<a class="btn btn-info" href="/lisaaVari">Lisää langalle uusi väri</a>
 	
 </body>

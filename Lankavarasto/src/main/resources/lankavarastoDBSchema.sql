@@ -44,10 +44,10 @@ INSERT INTO vari(vari, maara_varastossa)
 VALUES	('Auringonkukka', 50, 1);
 
 CREATE TABLE appuser (
-  appUser_id bigint(20) NOT NULL AUTO_INCREMENT,
-  username varchar(250) NOT NULL DEFAULT '',
+  user_id bigint(20) NOT NULL AUTO_INCREMENT,
+  username varchar(50) NOT NULL DEFAULT '',
   password varchar(250) NOT NULL DEFAULT '',
-  role varchar(250) NOT NULL DEFAULT '',
+  role varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (appUser_id)
 );
 

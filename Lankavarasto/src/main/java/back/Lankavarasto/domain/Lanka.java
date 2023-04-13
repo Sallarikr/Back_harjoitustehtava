@@ -39,10 +39,9 @@ public class Lanka {
 		super();
 	}
 
-	public Lanka(Long id, String merkki, String malli, String koostumus, String luokittelu, String neuletiheys,
+	public Lanka(String merkki, String malli, String koostumus, String luokittelu, String neuletiheys,
 			String suositus, int paino, int pituus) {
 		super();
-		this.id = id;
 		this.merkki = merkki;
 		this.malli = malli;
 		this.koostumus = koostumus;
@@ -53,8 +52,9 @@ public class Lanka {
 		this.pituus = pituus;
 	}
 
-	public Lanka(String merkki, String malli, String koostumus, String luokittelu, String neuletiheys, String suositus,
-			int paino, int pituus, List<Vari> varit) {
+
+	public Lanka(String merkki, String malli, String koostumus, String luokittelu, String neuletiheys,
+			String suositus, int paino, int pituus, List<Vari> varit) {
 		super();
 		this.merkki = merkki;
 		this.malli = malli;

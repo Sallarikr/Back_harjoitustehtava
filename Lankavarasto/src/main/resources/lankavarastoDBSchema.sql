@@ -13,8 +13,8 @@ CREATE TABLE lanka (
   luokittelu varchar(200),
   neuletiheys varchar(200),
   suositus varchar(200),
-  paino int(11) DEFAULT 0,
-  pituus int(11) DEFAULT 0,
+  paino int(11) DEFAULT ,
+  pituus int(11) DEFAULT,
   PRIMARY KEY (lanka_id));
  
 INSERT INTO lanka(merkki, malli, koostumus, luokittelu, neuletiheys, suositus, paino, pituus)
@@ -34,12 +34,12 @@ VALUES 	('Jonas Matthies', 'Book Rat', 'https://www.supergurumi.com/amigurumi-cr
 CREATE TABLE vari (
   vari_id bigint(20) NOT NULL AUTO_INCREMENT,
   vari varchar(50) NOT NULL,
-  maara_varastossa int(11),
+  maara_varastossa int(11) NOT NULL,
   lanka_id bigint(20) NOT NULL,
   PRIMARY KEY (vari_id),
-  FOREIGN KEY (lanka_id) REFERENCES lanka (lanka_id)););
+  FOREIGN KEY (lanka_id) REFERENCES lanka (lanka_id) ON DELETE RESTRICT ON UPDATE CASCADE);
 
-INSERT INTO vari(vari, maara_varastossa)
+INSERT INTO vari(vari, maara_varastossa, lanka_id)
 VALUES	('Auringonkukka', 50, 1);
 
 CREATE TABLE appuser (

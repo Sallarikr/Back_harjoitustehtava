@@ -12,4 +12,6 @@ public interface VariRepository extends JpaRepository<Vari, Long> {
 
 	public List<Vari> hae(String haku);
 
+	public List<Vari> findBySavy(String savy);
+
 }

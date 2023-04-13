@@ -1,13 +1,14 @@
 package back.Lankavarasto.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 @Entity
@@ -26,8 +27,9 @@ public class Vari {
 	@Column(name = "maara_varastossa")
 	private int maara;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "lanka_id")
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "lanka_id", referencedColumnName="lanka_id", nullable=false)
+	@NotNull
 	private Lanka lanka;
 
 	public Vari() {
@@ -40,9 +42,8 @@ public class Vari {
 		this.maara = maara;
 	}
 
-	public Vari(Long id, String savy, int maara, Lanka lanka) {
+	public Vari(String savy, int maara, Lanka lanka) {
 		super();
-		this.id = id;
 		this.savy = savy;
 		this.maara = maara;
 		this.lanka = lanka;

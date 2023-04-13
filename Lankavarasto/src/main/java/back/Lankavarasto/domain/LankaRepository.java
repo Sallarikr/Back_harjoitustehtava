@@ -12,4 +12,6 @@ public interface LankaRepository extends JpaRepository<Lanka, Long> {
 			+ " OR l.paino LIKE %?1%" + " OR l.pituus LIKE %?1%")
 
 	public List<Lanka> hae(String haku);
-}
+	
+    List<Lanka> findByMalli(String malli);
+   }
